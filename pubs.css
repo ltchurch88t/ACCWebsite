@@ -1,0 +1,319 @@
+/* NOTE:
+ * Grid/Flex layout stuff starts at line 187. 
+ * The stuff before is just boring old CSS to make content look not crappy.
+ */
+
+
+/*--------------------------------------------------------------
+CSS Reset
+--------------------------------------------------------------*/
+html {
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust:     100%;
+}
+
+body {
+	margin: 0;
+}
+
+img {
+	display: block;
+	border: 0;
+	width: 100%;
+	height: auto;
+}
+
+
+/*--------------------------------------------------------------
+Accessibility
+--------------------------------------------------------------*/
+/* Text meant only for screen readers */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar */
+}
+
+
+/*--------------------------------------------------------------
+Typography
+--------------------------------------------------------------*/
+body,
+input,
+select,
+textarea {
+	color: #404040;
+	font-family: 'Helvetica', Arial, sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+button {
+	color: white;
+	font-family: 'Helvetica', Arial, sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	text-align: center;
+	margin: 0;
+	padding: 1em 0;
+	color: #404040;
+}
+
+p {
+	margin: 0;
+	padding: 1em 0;
+	color: #404040;
+}
+
+p a:link {
+	color: white;
+}
+
+p a:visited {
+	color: white;
+}
+
+p a:hover,
+p a:focus {
+	color: white;
+}
+
+/* Promo section */
+
+.logo {
+	text-align: center;
+	background-color: #f2e9da;
+	font-size: 4.5em;
+}
+
+.site-title {
+	color: #404040;
+	text-align: center;
+	background-color: #c4a8ad;
+}
+
+@media (max-width: 500px) {
+	.logo {
+		font-size: 3.2em;
+	}
+}
+
+/* Splash section */
+.content-title {
+	color: #404040;
+}
+
+.splash {
+	background: #f2e9da;
+	padding-bottom: 2em;
+}
+
+.splash-grid {
+	background-color: #c4a8ad;
+	color: white;
+}
+
+.splash-content {
+	padding: 1.5em;
+}
+
+@media screen and (min-width: 600px) {
+	.splash-text {
+		columns: 2;
+		column-gap: 2em;
+	}
+
+	.splash-text p {
+		padding-top: 0;
+	}
+}
+
+/* Buckets section */
+
+.buckets {
+	padding: 2em 1em 1em;
+	background-color: #310c2d;
+}
+
+.buckets ul {
+	margin: 0;
+	padding: 0;
+}
+
+.buckets li {
+	margin-bottom: 1em;
+	background: white;
+	list-style-type: none;
+	background-color: #f2e9da;
+	color: black;
+}
+
+.bucket {
+	padding: 1.5em;
+}
+
+.bucket-title a:link {
+	color: black;
+}
+
+.bucket-title a:visited {
+	color: black;
+}
+
+.bucket-title a:hover,
+.bucket-title a:focus {
+	color: black;
+}
+
+.bgrid {
+	display: grid;
+	grid-template-rows: 1fr auto auto;
+	grid-template-columns: auto;
+	grid-template-areas: 
+		"title"
+		"infos"
+		"info";
+	grid-column-gap: 5px;
+}
+
+.bucket-title {
+	grid-area: title;
+}
+
+.infos {
+	grid-area: infos;
+}
+.info {
+	grid-area: info;
+}
+
+/* Twins section */
+
+.twin {
+	padding: 2em;
+	background: #c4a8ad;
+	color: white;
+	border: 1px solid #333;
+}
+
+.twin:last-of-type {
+	background: #c4a8ad;
+}
+
+/* Colophon section */
+.colophon {
+	padding: 2em;
+	background: #c4a8ad;
+	color: white;
+	text-align: center;
+}
+
+
+/*--------------------------------------------------------------
+If no grid support, limit width to 50em and center align
+--------------------------------------------------------------*/
+@supports not (display: grid) {
+	.grid {
+		max-width: 50em;
+		margin: 0 auto;
+	}
+}
+
+@media screen an (min-width: 400px) {
+	@supports (display: grid) {
+		.grid {
+			max-width: 50em;
+			margin: 0 auto;
+		} 
+	}
+}
+
+
+@media screen an (min-width: 500px) {
+	@supports (display: grid) {
+		.grid {
+			max-width: 50em;
+			margin: 0 auto;
+		} 
+	}
+}
+
+
+/*--------------------------------------------------------------
+Use flex to create a three-bucket layout 
+--------------------------------------------------------------*/
+
+@media screen and (min-width: 700px) {
+	@supports (display: flex) {
+
+		.buckets ul {
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.buckets li {
+			width: 90%;
+		}
+
+	}
+}
+
+/*--------------------------------------------------------------
+CSS Grid layout for wider screens, when browser supports grid:
+--------------------------------------------------------------*/
+
+@media screen and (min-width: 600px) {
+	/* Layout with CSS Grid */
+	@supports (display: grid) {
+
+		/* Four-column layout. Two center columns have a total max width of 50em: */
+		.grid {
+
+			display: grid;
+			grid-template-columns: 1fr repeat(2, minmax(auto, 25em)) 1fr;
+		}
+
+		/* Center items by placing them in the two center columns: */
+		.splash-content,
+		.buckets ul {
+			grid-column: 2/4;
+		}
+
+		/* Use automatic grid placement + span to let each item span two columns:*/
+		.twin,
+		.colophon aside {
+			grid-column: span 2;
+		}
+
+	}
+}
